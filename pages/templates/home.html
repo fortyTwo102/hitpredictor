@@ -1,0 +1,68 @@
+<body background= "/static/images/bg.jpg">
+
+{% extends 'base.html' %}
+
+
+{% block title %}Home{% endblock %}
+
+
+{% block content %}
+
+
+{% load static %}
+
+<style>a:link {
+		color: #1db954;
+	}
+
+	body {
+    	font: Canterall;
+	}
+</style>
+		<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+		<script type="text/javascript">// <![CDATA[
+	        function loading(){
+	            $("#loading").show();
+	            $("#content").hide();       
+	        }
+		// ]]></script>
+
+		
+		
+			<div class="container">
+				<center> <h1 style="color: white" >PICK YOUR SONG</h1></center>
+				<br/><br/>
+				<form name ="Input" method="POST">
+					{% csrf_token %}
+					<center>
+						<input type="text" name="track" placeholder="Track Name">
+						<input type="text" name="artist" placeholder="Artist Name">
+						<input type="submit" style="background-color: #1db954; background: linear-gradient(to bottom,  #e9fcef 0%,#bdf5d0 30%,#7beaa2 78%,#1db954 100%); "  value="Predict!" onclick="loading();">
+						<input type="submit" onclick="{% url 'homeInput' %}" value="Reset">
+					</center>
+				</form>
+				<br/>
+			</div>	
+
+			<center><div id="loading"></div></center>
+			<div id="content">
+				<center>
+					<h2 style="color: #1db954" >{{ banner }}</h2>	
+					<h7 style="color: grey" > There's a </h7> 
+					<h2 style="color: white" >{{ perc }}</h2> 
+					<h7 style="color: grey" > chance of </h7> 
+					<h2 style="color: white " > {{ trackName }} by {{ artistName }} </h2>
+					<h7 style="color: grey" > being a hit. </h7> 
+					<br/> 
+					<h8> <a style="color:#1db954" href="/about/"> ..but how can I just 'say' that? </a> </h8>
+				</center>
+			</div>
+
+			
+
+	</center>	
+
+</body>
+
+{% endblock %}
