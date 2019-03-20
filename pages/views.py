@@ -11,7 +11,11 @@ def home(request):
 
 	if track and artist:
 
-		perc, trackName, artistName = hitpredictor.main(track, artist)
+		try:
+			perc, trackName, artistName = hitpredictor.main(track, artist)
+		except:
+			args = {"error":"Sorry :( your song is not available on Spotify servers, please check if there are any spelling mistakes; or the information you provided is correct."}
+			return render(request, "homeInput.html",args)	
 
 		banner = "IT'S A HIT!" if perc >=50 else "It might not do well. "
 
