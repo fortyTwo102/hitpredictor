@@ -23,36 +23,37 @@ def getSongURI(trackName,artistName):
 	sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 	
 
-	try:
-		track = sp.search(q='artist:' + artistName+' track:'+trackName,type='track',limit=10)
-
-		result = track['tracks']['items']
-		
-		for each in result:
-			if each['artists'][0]['name'].lower() == artistName.lower():
-				uri = each['uri']
-				break
-
-		return uri		
-
-		
-	except:
-		try:
-			track = sp.search(trackName,type='track',limit=50)
-
-			result = track['tracks']['items']
-			
-			for each in result:
-				if each['artists'][0]['name'].lower() == artistName.lower():
-					uri = each['uri']
-					break
-
-			return uri
-
-		except:
-			
-			print(trackName+ " is not found.")	
 	
+	track = sp.search(q='artist:' + artistName+' track:'+trackName,type='track',limit=10)
+
+	result = track['tracks']['items']
+
+	for each in result:
+		for artist in each['artists']:			
+			if artist['name'].lower() == artistName.lower():
+				uri = each['uri']
+				artistName = artist['name']
+				return uri, artistName
+
+			
+
+	
+
+
+	track = sp.search(trackName,type='track',limit=50)
+
+	result = track['tracks']['items']
+
+	for each in result:
+		for artist in each['artists']:			
+			if artist['name'].lower() == artistName.lower():
+				uri = each['uri']
+				artistName = artist['name']
+				return uri,artistName
+
+
+		
+
 	
 
 def featureNorm(X):
@@ -73,6 +74,7 @@ def getSongFeatures(trackID):
 
 	global trackFetched
 	global artistFetched
+
 
 	
 
@@ -190,12 +192,12 @@ def Predict(feature):
 def main(track, artist):
 
 	print("Fetching Track URI from Spotify....",end="")
-	spotifyURI = getSongURI(track, artist)
+	spotifyURI,a = getSongURI(track, artist)
 	print("Fetched!")
 	print("Fetching Track features from Spotify....",end="")
 	songFeature = getSongFeatures(spotifyURI)
 	print("Fetched!")
 
-	r, t, a = Predict(songFeature)
+	r, t, x = Predict(songFeature)
 
 	return r, t, a	
