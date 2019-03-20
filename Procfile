@@ -1,1 +1,1 @@
-web: gunicorn hitpredictor.wsgi
+web: gunicorn predictweb.wsgi
