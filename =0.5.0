@@ -1,0 +1,25 @@
+Defaulting to user installation because normal site-packages is not writeable
+Collecting dj-database-url
+  Using cached dj_database_url-2.3.0-py3-none-any.whl.metadata (12 kB)
+Collecting whitenoise
+  Using cached whitenoise-6.9.0-py3-none-any.whl.metadata (3.6 kB)
+Collecting Django>=4.2 (from dj-database-url)
+  Downloading django-5.2.1-py3-none-any.whl.metadata (4.1 kB)
+Requirement already satisfied: typing-extensions>=3.10.0.0 in /usr/local/lib/python3.10/dist-packages (from dj-database-url) (4.13.2)
+Collecting asgiref>=3.8.1 (from Django>=4.2->dj-database-url)
+  Downloading asgiref-3.8.1-py3-none-any.whl.metadata (9.3 kB)
+Collecting sqlparse>=0.3.1 (from Django>=4.2->dj-database-url)
+  Downloading sqlparse-0.5.3-py3-none-any.whl.metadata (3.9 kB)
+Downloading dj_database_url-2.3.0-py3-none-any.whl (7.8 kB)
+Downloading whitenoise-6.9.0-py3-none-any.whl (20 kB)
+Downloading django-5.2.1-py3-none-any.whl (8.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 8.3/8.3 MB 24.5 MB/s eta 0:00:00
+Downloading asgiref-3.8.1-py3-none-any.whl (23 kB)
+Downloading sqlparse-0.5.3-py3-none-any.whl (44 kB)
+Installing collected packages: whitenoise, sqlparse, asgiref, Django, dj-database-url
+  Attempting uninstall: Django
+    Found existing installation: Django 2.0.4
+    Uninstalling Django-2.0.4:
+      Successfully uninstalled Django-2.0.4
+
+Successfully installed Django-5.2.1 asgiref-3.8.1 dj-database-url-2.3.0 sqlparse-0.5.3 whitenoise-6.9.0
